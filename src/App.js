@@ -2,12 +2,14 @@ import React from 'react'
 
 import { ToDoList } from './components/ToDoList/ToDoList.jsx'
 
-function App(){
-  return(
-    <>
-      <ToDoList />
-    </>
-  )
+class App extends React.Component(){
+  render(){
+    return(
+      <>
+        <ToDoList />
+      </>
+    )
+  }
 }
 
 
