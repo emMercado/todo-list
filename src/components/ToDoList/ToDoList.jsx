@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 
-export class ToDoList extends React.Component {
+export class ToDoList extends Component {
             
     constructor(props){
         super(props)
@@ -11,7 +11,6 @@ export class ToDoList extends React.Component {
             pais:'',
             ciudad: '',
             puesto:''
-            
         }
     }
 
