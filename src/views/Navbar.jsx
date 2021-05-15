@@ -11,13 +11,15 @@ export default class Navbar extends Component {
 
     render() {
         return (
-            <p>
-                <Link to="/">Home</Link>
-                <Link to="/companies">Companies</Link>
-                <Link to="/cities">Cities</Link>
-                <Link to="/countries">Countries</Link> 
-                
-            </p>
+            <nav className="navbar navbar-dark bg-dark">
+                <div className="container">
+                    <Link className="navbar-brand" to="/">Home</Link>
+                    <Link className="navbar-brand" to="/jobs">Jobs</Link>
+                    <Link className="navbar-brand" to="/companies">Companies</Link>
+                    <Link className="navbar-brand" to="/cities">Cities</Link>
+                    <Link className="navbar-brand" to="/countries">Countries</Link>
+                </div>
+            </nav>
         )
     }
 }

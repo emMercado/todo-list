@@ -62,48 +62,48 @@ export class ToDoList extends Component {
   
     render(){
         return(
-            <div class="container">
+            <div class="containers">
                 <div>
                     <div class="container-form">
-                    <label htmlFor="pais" >Pais: </label>    
-                    <input class="text-form"
-                    value={this.state.pais} 
-                    onChange={(change) => this.Entrada(change)}
-                    name="pais" id="pais" type="text"></input>
-                    <br></br>
-                    <br></br>
-                    <label htmlFor="ciudad">Ciudad: </label>
-                    <input 
-                    value={this.state.ciudad} 
-                    onChange={(change) => this.Entrada(change)}
-                    name="ciudad" id="ciudad" type="text"></input>
-                    <br></br>
-                    <br></br>
-                    <label htmlFor="empresa">Empresa: </label>
-                    <input 
-                    value={this.state.empresa} 
-                    onChange={(change) => this.Entrada(change)}
-                    name="empresa" id="empresa" type="text"></input>
-                    <br></br>
-                    <br></br>
-                    <label htmlFor="puesto">Puesto: </label>
-                    <input 
-                    value={this.state.puesto} 
-                    onChange={(change) => this.Entrada(change)}
-                    name="puesto" id="puesto" type="text"></input>
-                    <br></br>
-                    <br></br> 
-                    <button class="button"onClick={() =>this.addTask()}>Agregar</button>
-                    </div>           
-                    <br></br>
-                    <br></br>
-                    { this.state.tasks.map((item, index ) => { return(
-                        <>
-                            <li key={index} className="container-list">{item}
-                            <button class="button-delete" onClick={() => this.Delete(index)}>Eliminar tarea</button>
-                            </li>        
-                            <hr></hr>
-                         </>) })}      
+                        <label htmlFor="pais" >Pais: </label>    
+                        <input class="text-form"
+                        value={this.state.pais} 
+                        onChange={(change) => this.Entrada(change)}
+                        name="pais" id="pais" type="text"></input>
+                        <br></br>
+                        <br></br>
+                        <label htmlFor="ciudad">Ciudad: </label>
+                        <input 
+                        value={this.state.ciudad} 
+                        onChange={(change) => this.Entrada(change)}
+                        name="ciudad" id="ciudad" type="text"></input>
+                        <br></br>
+                        <br></br>
+                        <label htmlFor="empresa">Empresa: </label>
+                        <input 
+                        value={this.state.empresa} 
+                        onChange={(change) => this.Entrada(change)}
+                        name="empresa" id="empresa" type="text"></input>
+                        <br></br>
+                        <br></br>
+                        <label htmlFor="puesto">Puesto: </label>
+                        <input 
+                        value={this.state.puesto} 
+                        onChange={(change) => this.Entrada(change)}
+                        name="puesto" id="puesto" type="text"></input>
+                        <br></br>
+                        <br></br> 
+                        <button class="button"onClick={() =>this.addTask()}>Agregar</button>
+                        </div>           
+                        <br></br>
+                        <br></br>
+                        { this.state.tasks.map((item, index ) => { return(
+                            <>
+                                <li key={index} className="container-list">{item}
+                                <button class="button-delete" onClick={() => this.Delete(index)}>Eliminar tarea</button>
+                                </li>        
+                                <hr></hr>
+                            </>) })}      
                 </div>
             </div>
         )

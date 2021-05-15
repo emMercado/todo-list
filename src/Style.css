@@ -8,7 +8,7 @@ body{
     background-color: #red;
 }
 
-.container{
+.containers{
     padding-top: 80px;
     width: 100%;
     display: flex;
@@ -17,6 +17,7 @@ body{
     flex-shrink: 0;
     background-color:rgb(210, 223, 175);
 }
+
 
 .container-form{
     font-style: italic;
