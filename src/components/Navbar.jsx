@@ -4,10 +4,10 @@ import {Link} from 'react-router-dom';
 
 export default class Navbar extends Component {
 
-    constructor(props) {
+/*     constructor(props) {
         super(props);
     }
-
+ */
 
     render() {
         return (
