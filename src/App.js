@@ -1,29 +1,80 @@
 import React from 'react'
-import {BrowserRouter as Router, Route} from 'react-router-dom';
-/* import NavBar from './components/NavBar'; */
+import { Route , Switch } from 'react-router-dom';
 
-import { ToDoList } from './components/ToDoList/ToDoList.jsx'
+//vistas
+import { ToDoList } from './views/ToDoList.jsx'
+import MainView from './views/MainView' 
 import Jobs from './views/Jobs';
 import Companies from './views/Companies';
 import Cities from './views/Cities';
 import Countries from './views/Countries';
-import Navbar from './views/Navbar';
+
+//components
+import Navbar from './components/Navbar';
 /* import NotFoundView from './views/NotFoundView';  */
 
 
-export default function App() {
-  return (
-    <div className="App">
-      <Router>
-          <Navbar /> 
-          <Route path="/" exact component={ToDoList}></Route>
-          <Route path="/jobs" exact component={Jobs} ></Route>
-          <Route path="/companies" exact component={Companies} ></Route>
-          <Route path="/cities" exact component={Cities} ></Route>
-          <Route path="/countries" exact component={Countries} ></Route>
-        {/*  <Route component={NotFoundView}></Route> */}
-      </Router>
-    </div>
-  );
+export class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      paises: [],
+      cities: [],
+      jobs: [],
+      companies: [],
+    };
+  }
+
+  addCountries = (pais) => {
+    this.setState({
+      paises : [...this.state.paises, {
+        country: pais,
+      }
+      ]
+    })
+  }
+  addCities = (cities,c) => {
+    this.setState({
+      cities : [...this.state.cities, {
+        city: cities, 
+        country: c
+      }]
+    })
+  }
+  addJobs = (jobs,i) => {
+    this.setState({
+      jobs : [...this.state.jobs, {
+        job: jobs, 
+        company: i
+      }]
+    })
+  }
+
+  addCompanies = (companies,c) => {
+    this.setState({
+      companies : [...this.state.companies, {
+        company: companies, 
+        city: c
+      }]
+    })
+  }
+
+  render() {
+    return (
+      <div className="App">
+        
+        <Navbar/> 
+        <Switch>
+            <Route path="/" exact render={()=> <MainView listas={this.state}/>}></Route>
+            <Route path="/jobs" exact render={()=> <Jobs  jobs={this.state.jobs} agregarJobs={this.addJobs} companies={this.state.companies} />} ></Route>
+            <Route path="/companies" exact render={()=> <Companies companies={this.state.companies} agregarCompanies={this.addCompanies} cities={this.state.cities} />} ></Route>
+            <Route path="/cities" exact render={()=> <Cities cities={this.state.cities} agregarCities={this.addCities} countries={this.state.paises} />} ></Route>
+            <Route path="/countries" exact render={()=> <Countries countries={this.state.paises} agregarPais={this.addCountries} />} ></Route>
+            {/*  <Route component={NotFoundView}></Route> */}
+        </Switch>
+      </div>
+    );
+  }
 }
 
