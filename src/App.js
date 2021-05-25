@@ -3,6 +3,7 @@ import { Route , Switch } from 'react-router-dom';
 
 //vistas
 import { ToDoList } from './views/ToDoList.jsx'
+import MainView from './views/MainView' 
 import Jobs from './views/Jobs';
 import Companies from './views/Companies';
 import Cities from './views/Cities';
@@ -37,7 +38,7 @@ export class App extends React.Component {
     this.setState({
       cities : [...this.state.cities, {
         city: cities, 
-        country: this.state.paises[c].country
+        country: c
       }]
     })
   }
@@ -45,7 +46,7 @@ export class App extends React.Component {
     this.setState({
       jobs : [...this.state.jobs, {
         job: jobs, 
-        company: this.state.companies[i].company
+        company: i
       }]
     })
   }
@@ -54,7 +55,7 @@ export class App extends React.Component {
     this.setState({
       companies : [...this.state.companies, {
         company: companies, 
-        city: this.state.cities[c].city
+        city: c
       }]
     })
   }
@@ -65,7 +66,8 @@ export class App extends React.Component {
         
         <Navbar/> 
         <Switch>
-            <Route path="/" exact component={ToDoList}></Route>
+            <Route path="/" exact render={()=> <MainView listas={this.state}/>}></Route>
+            {/* <Route path="/main" exact component={MainView}></Route> */}
             <Route path="/jobs" exact render={()=> <Jobs  jobs={this.state.jobs} agregarJobs={this.addJobs} companies={this.state.companies} />} ></Route>
             <Route path="/companies" exact render={()=> <Companies companies={this.state.companies} agregarCompanies={this.addCompanies} cities={this.state.cities} />} ></Route>
             <Route path="/cities" exact render={()=> <Cities cities={this.state.cities} agregarCities={this.addCities} countries={this.state.paises} />} ></Route>
