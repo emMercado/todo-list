@@ -67,7 +67,6 @@ export class App extends React.Component {
         <Navbar/> 
         <Switch>
             <Route path="/" exact render={()=> <MainView listas={this.state}/>}></Route>
-            {/* <Route path="/main" exact component={MainView}></Route> */}
             <Route path="/jobs" exact render={()=> <Jobs  jobs={this.state.jobs} agregarJobs={this.addJobs} companies={this.state.companies} />} ></Route>
             <Route path="/companies" exact render={()=> <Companies companies={this.state.companies} agregarCompanies={this.addCompanies} cities={this.state.cities} />} ></Route>
             <Route path="/cities" exact render={()=> <Cities cities={this.state.cities} agregarCities={this.addCities} countries={this.state.paises} />} ></Route>

@@ -14,7 +14,7 @@ export default class Navbar extends Component {
             <nav className="navbar navbar-dark bg-dark">
                 <div className="container">
                     <Link className="navbar-brand" to="/">Home</Link>
-                    <Link className="navbar-brand" to="/main">Home</Link>
+
                     <Link className="navbar-brand" to="/jobs">Jobs</Link>
                     <Link className="navbar-brand" to="/companies">Companies</Link>
                     <Link className="navbar-brand" to="/cities">Cities</Link>

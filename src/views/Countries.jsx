@@ -7,7 +7,7 @@ export default class Countries extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            input: '',
+            input: 'asd',
  
         }
     }
