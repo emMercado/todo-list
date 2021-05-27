@@ -1,9 +1,13 @@
 
 
+
+
 const Table = (props) => {
+    
     const { paises, cities, companies, jobs } = props.listas;
     return ( 
         <div className="container">
+  
             <table className="table table-hover table-dark">
             <thead className="">
                 <tr>     

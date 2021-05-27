@@ -1,8 +1,9 @@
 import React from 'react'
 import { Route , Switch } from 'react-router-dom';
+import axios from 'axios'
 
 //vistas
-import { ToDoList } from './views/ToDoList.jsx'
+/* import { ToDoList } from './views/ToDoList.jsx' */
 import MainView from './views/MainView' 
 import Jobs from './views/Jobs';
 import Companies from './views/Companies';
@@ -11,6 +12,8 @@ import Countries from './views/Countries';
 
 //components
 import Navbar from './components/Navbar';
+/* import {getData} from './components/pilarClient'; */
+
 /* import NotFoundView from './views/NotFoundView';  */
 
 
@@ -23,6 +26,7 @@ export class App extends React.Component {
       cities: [],
       jobs: [],
       companies: [],
+      ciudades: [],
     };
   }
 
@@ -60,19 +64,45 @@ export class App extends React.Component {
     })
   }
 
+  componentDidMount(){
+    axios
+      .get('https://api-fake-pilar-tecno.herokuapp.com/countries')
+      .then((response)=> {
+        console.log(response);
+        this.setState({ciudades: response.data})
+      })
+      .catch((error)=>{
+        console.log(error);
+      })
+
+    /*  getData().then(res => this.setState({
+        dbPilar: res,
+      })) */
+
+  } 
+  /* postData()  */
+
+  /* deleteData() */
+
   render() {
+        
+    /* console.log(this.state.dbPilar) */
+    
     return (
       <div className="App">
         
         <Navbar/> 
+        
         <Switch>
-            <Route path="/" exact render={()=> <MainView listas={this.state}/>}></Route>
+          
+            <Route path="/" exact render={()=> <MainView listas={this.state} get={this.componentDidMount} />}></Route>
             <Route path="/jobs" exact render={()=> <Jobs  jobs={this.state.jobs} agregarJobs={this.addJobs} companies={this.state.companies} />} ></Route>
             <Route path="/companies" exact render={()=> <Companies companies={this.state.companies} agregarCompanies={this.addCompanies} cities={this.state.cities} />} ></Route>
             <Route path="/cities" exact render={()=> <Cities cities={this.state.cities} agregarCities={this.addCities} countries={this.state.paises} />} ></Route>
             <Route path="/countries" exact render={()=> <Countries countries={this.state.paises} agregarPais={this.addCountries} />} ></Route>
             {/*  <Route component={NotFoundView}></Route> */}
         </Switch>
+          {this.state.ciudades.map((elemento, index)=>(<p key={index} >{elemento.name}</p>))}
       </div>
     );
   }
