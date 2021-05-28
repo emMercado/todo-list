@@ -4,7 +4,7 @@
 
 const Table = (props) => {
     
-    const { paises, cities, companies, jobs } = props.listas;
+    const { paises, cities, companies, jobs, ciudades } = props.listas;
     return ( 
         <div className="container">
   
@@ -17,6 +17,11 @@ const Table = (props) => {
                 </tr>
             </thead>
             <tbody  >
+                {ciudades.map((elemento, index)=>{return (
+                    <p key={index} >{elemento.name}</p>
+                    )})}
+
+
                 {jobs.map((elemento, indice) => {return(
                     <tr key={indice}>
                         {/* <td >{indice}</td> */}

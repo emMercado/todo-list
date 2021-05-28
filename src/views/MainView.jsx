@@ -6,11 +6,12 @@ const MainView = (props) => {
 
         <div>
 
-          
+            
             <Table
                 
                 listas={props.listas}
                 msg={['Puesto','Empresa','Ciudad','País']}
+                
             /> 
          
         </div>
