@@ -8,7 +8,7 @@ body{
     background-color: #red;
 }
 
-.container{
+.containers{
     padding-top: 80px;
     width: 100%;
     display: flex;
@@ -17,6 +17,7 @@ body{
     flex-shrink: 0;
     background-color:rgb(210, 223, 175);
 }
+
 
 .container-form{
     font-style: italic;
@@ -65,4 +66,25 @@ body{
     border-radius: 1px;
     margin-top: 10px;
     text-decoration: none;
+}
+
+.columnass{
+    margin-top:300px;
+    padding-left: 200px;
+    width: 400px;
+    background-color: #bb523f;
+}
+.elemento{
+    height: 50px;
+    
+    width: 200px;
+    background-color: #c79c94;
+}
+
+.tabla{
+    
+    margin-left: 200px;
+    margin-right: 200px;
+    width: 250px px;
+    background-color: #c79c94;
 }
