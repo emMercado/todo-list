@@ -7,7 +7,7 @@ export default class Countries extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            input: 'asd',
+            input: '',
  
         }
     }
@@ -22,13 +22,14 @@ export default class Countries extends Component {
         return (
             <div className="containers">
                 <div className="container-form">
+                
                     <b>Paises</b>
                     <hr/>
                     <input onChange={(e) => this.inputChange(e) }  ></input>
                     
-                    <Add agregar={this.props.agregarPais} input={this.state.input} ></Add>
+                    <Add agregar={this.props.agregarPais} input={this.state.input}  ></Add>
                     <ul>
-                        {this.props.countries.map((elemento,index) => {return <li key={index}>{elemento.country}</li>} ) }
+                        {this.props.countries.map((elemento,index) => {return <li key={index}>{elemento.name}</li>} ) }
                     </ul>
                     
                 </div>
