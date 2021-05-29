@@ -17,17 +17,42 @@ import Navbar from './components/Navbar';
 /* import NotFoundView from './views/NotFoundView';  */
 
 
+const postData = async (url,data) => {
+  /* debugger */
+  const configRequest = {
+      method: 'POST',
+      url: 'https://api-fake-pilar-tecno.herokuapp.com/'+url,
+      data: data
+
+  }
+  try {
+      const res = await axios(configRequest)
+      return res.data
+  } catch (err) {
+      console.error(err)
+  }
+}
+
+const deleteData = async (url,id) => {
+  const configRequest = {
+      method: 'DELETE',
+      url: `https://api-fake-pilar-tecno.herokuapp.com/${url}/${id}`, 
+  }
+  try {
+      const res = await axios(configRequest)
+      return (res.data)
+  } catch (err) {
+      console.error(err)
+      throw err
+  }
+} 
+
+
 export class App extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      paises: [],
-      cities: [],
-      jobs: [],
-      companies: [],
-
-      
       ciudades: [],
       lugares: [],
       organizaciones: [],
@@ -35,49 +60,68 @@ export class App extends React.Component {
     };
   }
 
+  deleteJob = (id) => {
+    let url = 'jobs'
+    deleteData(url,id)
+    .then(() => this.setState({
+      trabajos: this.state.trabajos.filter(trabajo => trabajo.id !== id )
+    }))
+  }
+
+
   addCountries = (pais) => {
-    this.setState({
-      paises : [...this.state.paises, {
-        country: pais,
-      }
-      ]
+    let data = {name: pais}
+    const url = 'countries'
+    postData(url, data).then(res => {
+      this.setState({
+        ciudades: [...this.state.ciudades, res],
+      });
     })
   }
-  addCities = (cities,c) => {
-    this.setState({
-      cities : [...this.state.cities, {
-        city: cities, 
-        country: c
-      }]
+ 
+  addCities = (lugares, idPais) => {
+    let data = {name: lugares, countrieId: idPais} 
+    const url = 'places'
+    postData(url,data).then(res => {
+      this.setState({
+        lugares: [...this.state.lugares, res],
+      });
     })
+
   }
-  addJobs = (jobs,i) => {
-    this.setState({
-      jobs : [...this.state.jobs, {
-        job: jobs, 
-        company: i
-      }]
+  addCompanies = (organizaciones, idCiudad) => {
+    let data = {name: organizaciones, placeId: idCiudad} 
+    const url = 'organizations'
+    postData(url,data).then(res => {
+      this.setState({
+        organizaciones: [...this.state.organizaciones, res],
+      });
     })
   }
 
-  addCompanies = (companies,c) => {
-    this.setState({
-      companies : [...this.state.companies, {
-        company: companies, 
-        city: c
-      }]
+  addJobs = (trabajos, idOranizacion) => {
+    let data = {position: trabajos, description:' ' , organizationId: idOranizacion} 
+    const url = 'jobs'
+    postData(url,data).then(res => {
+      /* debugger */
+      this.setState({
+        trabajos: [...this.state.trabajos, res],
+      });
     })
   }
+
 
   componentDidMount(){
     axios
       .get('https://api-fake-pilar-tecno.herokuapp.com/db')
       .then((response)=> {
         console.log(response);
-        this.setState({organizaciones: response.data.jobs}) 
-        this.setState({ciudades: response.data.countries})
-        this.setState({lugares: response.data.places})
-        this.setState({organizaciones: response.data.organizations})
+        this.setState({
+          trabajos: response.data.jobs,
+          ciudades: response.data.countries,
+          lugares: response.data.places,
+          organizaciones: response.data.organizations,
+        }) 
       })
       .catch((error)=>{
         console.log(error);
@@ -86,27 +130,8 @@ export class App extends React.Component {
     /*  getData().then(res => this.setState({
         dbPilar: res,
       })) */
-  } 
+  }
 
-  componentDidMount2(){
-    axios
-      .get('https://api-fake-pilar-tecno.herokuapp.com/db')
-      .then((response)=> {
-        console.log(response);
-        
-      })
-      .catch((error)=>{
-        console.log(error);
-      })
-
-    /*  getData().then(res => this.setState({
-        dbPilar: res,
-      })) */
-
-  } 
-  /* postData()  */
-
-  /* deleteData() */
 
   render() {
         
@@ -119,17 +144,14 @@ export class App extends React.Component {
         
         <Switch>
           
-            <Route path="/" exact render={()=> <MainView listas={this.state} />}></Route>
-            <Route path="/jobs" exact render={()=> <Jobs  jobs={this.state.jobs} agregarJobs={this.addJobs} companies={this.state.companies} />} ></Route>
-            <Route path="/companies" exact render={()=> <Companies companies={this.state.companies} agregarCompanies={this.addCompanies} cities={this.state.cities} />} ></Route>
-            <Route path="/cities" exact render={()=> <Cities cities={this.state.cities} agregarCities={this.addCities} countries={this.state.paises} />} ></Route>
-            <Route path="/countries" exact render={()=> <Countries countries={this.state.paises} agregarPais={this.addCountries} />} ></Route>
+            <Route path="/" exact render={()=> <MainView listas={this.state} deleteJob={this.deleteJob} />}></Route>
+            <Route path="/jobs" exact render={()=> <Jobs  jobs={this.state.trabajos} agregarJobs={this.addJobs} companies={this.state.organizaciones} />} ></Route>
+            <Route path="/companies" exact render={()=> <Companies companies={this.state.organizaciones} agregarCompanies={this.addCompanies} cities={this.state.lugares} />} ></Route>
+            <Route path="/cities" exact render={()=> <Cities cities={this.state.lugares} agregarCities={this.addCities} countries={this.state.ciudades} />} ></Route>
+            <Route path="/countries" exact render={()=> <Countries countries={this.state.ciudades} agregarPais={this.addCountries} />} ></Route>
             {/*  <Route component={NotFoundView}></Route> */}
         </Switch>
-          {this.state.trabajos.map((elemento, index)=>(<p key={index} >{elemento.name}</p>))} 
-          {this.state.organizaciones.map((elemento, index)=>(<p key={index} >{elemento.name}</p>))}
-          {this.state.ciudades.map((elemento, index)=>(<p key={index} >{elemento.name}</p>))}
-          {this.state.lugares.map((elemento, index)=>(<p key={index} >{elemento.name}</p>))}
+     
       </div>
     );
   }

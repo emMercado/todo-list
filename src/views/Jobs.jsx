@@ -31,7 +31,7 @@ export default class Jobs extends Component {
 
                     <Add agregar={this.props.agregarJobs} input={this.state.input}  seleccionar={this.state.select} />
                     <ul>
-                        {this.props.jobs.map((elemento,index) => {return <li key={index} >{elemento.job} {elemento.company}</li>})}
+                        {this.props.jobs.map((elemento,index) => {return <li key={index} >{/* {elemento.name} */} {elemento.position}</li>})}
                     </ul>
                 </div>
             </div>

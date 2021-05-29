@@ -34,7 +34,7 @@ export default class Companies extends Component {
 
                     <Add agregar={this.props.agregarCompanies} input={this.state.input} seleccionar={this.state.select}/>
                     <ul>
-                        {this.props.companies.map((elemento,index) => {return <li key={index}>{elemento.company}{elemento.city} </li>} ) }
+                        {this.props.companies.map((elemento,index) => {return <li key={index}>{/* {elemento.company} */}{elemento.name} </li>} ) }
                     </ul>
                 </div>
             </div>

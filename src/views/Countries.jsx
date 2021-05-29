@@ -27,9 +27,9 @@ export default class Countries extends Component {
                     <hr/>
                     <input onChange={(e) => this.inputChange(e) }  ></input>
                     
-                    <Add agregar={this.props.agregarPais} input={this.state.input} ></Add>
+                    <Add agregar={this.props.agregarPais} input={this.state.input}  ></Add>
                     <ul>
-                        {this.props.countries.map((elemento,index) => {return <li key={index}>{elemento.country}</li>} ) }
+                        {this.props.countries.map((elemento,index) => {return <li key={index}>{elemento.name}</li>} ) }
                     </ul>
                     
                 </div>

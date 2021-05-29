@@ -34,7 +34,7 @@ export default class Cities extends Component {
                     <Add agregar={this.props.agregarCities} input={this.state.input} seleccionar={this.state.select}></Add>
                     
                     <ul>
-                        {this.props.cities.map((elemento,index) => {return <li key={index}>{elemento.country} {elemento.city}</li>} ) }
+                        {this.props.cities.map((elemento,index) => {return <li key={index}>{/* {elemento.country} */} {elemento.name}</li>} ) }
                     </ul>
                 </div>
             </div>

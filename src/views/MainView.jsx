@@ -7,8 +7,9 @@ const MainView = (props) => {
         <div>
 
             
+
             <Table
-                
+                deleteJob={props.deleteJob} 
                 listas={props.listas}
                 msg={['Puesto','Empresa','Ciudad','País']}
                 
