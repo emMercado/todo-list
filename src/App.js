@@ -3,7 +3,7 @@ import { Route , Switch } from 'react-router-dom';
 import axios from 'axios'
 
 //vistas
-/* import { ToDoList } from './views/ToDoList.jsx' */
+
 import MainView from './views/MainView' 
 import Jobs from './views/Jobs';
 import Companies from './views/Companies';
@@ -12,7 +12,7 @@ import Countries from './views/Countries';
 
 //components
 import Navbar from './components/Navbar';
-/* import {getData} from './components/pilarClient'; */
+
 
 /* import NotFoundView from './views/NotFoundView';  */
 
