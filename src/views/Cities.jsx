@@ -9,6 +9,7 @@ export default class Cities extends Component {
         this.state = {
             input: '',
             select: -1,
+            
         };
     }
 
