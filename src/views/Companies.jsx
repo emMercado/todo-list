@@ -18,8 +18,6 @@ export default class Companies extends Component {
         })
     }
 
-    
-
     render() {
         return (
             <div className="containers">
